@@ -1,0 +1,40 @@
+<h1>Create New User</h1>
+
+<form id="create_new_user_form">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name" required />
+  <label for="age">Age:</label>
+  <input type="text" id="age" name="age" required />
+  <button type="submit">submit</button>
+</form>
+
+<div id="result"></div>
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"
+></script>
+
+<script>
+  $(document).ready(()=>{ $("#create_new_user_form").submit((event)=>{
+  console.log(111); event.preventDefault();
+  {{! 排版  }}
+  const formData = {name: $("#name").val(), age: $("#age").val() };
+  {{! 排版  }}
+  $.ajax({
+  {{! 排版  }}
+  url: "/users",
+  {{! 排版  }}
+  method: "POST",
+  {{! 排版  }}
+  data: formData,
+  {{! 排版  }}
+  success: (data)=>{$("#result").html(`<p>User Created: ID = ${data.id},Name =
+  ${data.name}</p>`)},
+  {{! 排版  }}
+  error: (xhr)=>{$("#result").html(`<p>Error: ${xhr.responseJSON.error}</p>`);}
+  }); });
+  {{! 排版  }}
+  });
+</script>

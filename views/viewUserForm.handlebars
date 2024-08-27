@@ -1,0 +1,23 @@
+<h1>View User by ID</h1>
+
+<form id="userForm" action="userform">
+  <label for="id">User ID:</label>
+  <input type="text" id="id" name="id" required />
+  <button type="submit">View User</button>
+</form>
+<div id="userResult"></div>
+
+<script
+  src="https://code.jquery.com/jquery-3.7.1.js"
+  integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="
+  crossorigin="anonymous"
+></script>
+
+<script>
+  $(document).ready(()=>{ $("#userForm").submit((event)=>{
+  event.preventDefault(); const userId = $("#id").val(); $.ajax({
+  url:`users/${userId}`, method: "GET", success: (data)=>{
+  $("#userResult").html(`<p>ID: ${data.id}</p> <p>Name: ${data.name}</p>`); },
+  error: (xhr)=>{ $("#userResult").html(`<p>${xhr.responseJSON.error}</p>`) } })
+  }) })
+</script>

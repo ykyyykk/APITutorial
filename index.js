@@ -40,7 +40,7 @@ app.get("/users/:id", (request, response) => {
 });
 
 // 一個使用者介面讓人方便輸入id
-app.get("/viewUserForm", (request, response) => {
+app.get("/", (request, response) => {
   response.render("viewUserForm");
 });
 
